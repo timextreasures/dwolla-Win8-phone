@@ -23,11 +23,11 @@ Getting Started - Create a Dwolla application
 To use the SDK you will need to register a free Dwolla application.  To do this go here: www.dwolla.com/applications
 
 Be sure to request the following "scopes" when registering your application.
-  Balance
-  AccountInfoFull
-  Send
-  Funding
-  Transactions
+- Balance
+- AccountInfoFull
+- Send
+- Funding
+- Transactions
 
 Once your application is registered and approved you will have an App Key and App Secret.  You will need these in the SDK.
 
@@ -40,8 +40,9 @@ There are few things you need to add to your project to get things going.
 2. Reference to the Dwolla.InAppSDK.SendMoneyHelper class.
 3. Implementing the UcSendMoney user control.
 
-Configuring the custom URI:
-1. As part of the OAuth process we need to redirect to the Dwolla site via a WebBrowserTask.  Part of the process is a callback URL.  In order for the browser to get back to the WP app, the custom URL scheme must be registered in the app.
+###Configuring the custom URI
+
+As part of the OAuth process we need to redirect to the Dwolla site via a WebBrowserTask.  Part of the process is a callback URL.  In order for the browser to get back to the WP app, the custom URL scheme must be registered in the app.
 
 - To register for a URI association, you must edit WMAppManifest.xml using the XML (Text) Editor. In Solution Explorer, expand the Properties folder and right-click the WMAppManifest.xml file, and then click Open With. In the Open With window, select XML(Text) Editor, and then click OK.
 
@@ -58,8 +59,7 @@ Configuring the custom URI:
 RootFrame.UriMapper = new OAuthResponseUriMapper(redirectUri);
 ```
 
-SendMoneyHelper class:
-1. Setup your application variables in App.xaml.cs.  
+###Setup your application variables in App.xaml.cs.  
 
 - Declare constants:
 
@@ -84,21 +84,25 @@ SendMoneyHelper class:
 ```
 
 
-2. Add the following using statements in your page/control:
+###Add the following using statements in your page/control:
 
-	using Dwolla.InAppSDK;
-	using Dwolla.InAppSDK.Models;
+```
+using Dwolla.InAppSDK;
+using Dwolla.InAppSDK.Models;
+```
 
-3. Add the following variables in your page/control:
+###Add the following variables in your page/control:
 
-	private SendMoneyHelper _sendMoneyHelper;
+```
+private SendMoneyHelper _sendMoneyHelper;
+```
 
-4. Using the SendMoneyHelper Class  
+###Using the SendMoneyHelper Class  
 Once the user is ready to pay via an in-app purchase SDK you need to make sure the user has authenticated via Dwolla.  To do this follow these steps:
 
-a) Create a new instance of the SendMoneyHelper class 
-b) Call the AuthenticateUser method.  
-c) If the response is successful then initialize the UcSendMoney user control by passing in the instance of the SendMoneyHelper class and the amount the user needs to pay.
+- Create a new instance of the SendMoneyHelper class 
+- Call the AuthenticateUser method.  
+- If the response is successful then initialize the UcSendMoney user control by passing in the instance of the SendMoneyHelper class and the amount the user needs to pay.
 
 When creating the instance of the SendMoneyHelper class you have the option to allow all types of funding sources or to limit funding sources to real-time only.  To limit to real-time only pass in false.
 
@@ -159,23 +163,26 @@ When creating the instance of the SendMoneyHelper class you have the option to a
 
 ```
 
-5. Events associated with UcSendMoney.  There are two event associated with UcSendMoney:
+###Events associated with UcSendMoney.  There are two event associated with UcSendMoney:
 
-a) SendMoneyComplete: The user successfully sent money to the merchant via Dwolla.  The user control returns the transaction id, which could then be used to get details about that transaction.
+-SendMoneyComplete: The user successfully sent money to the merchant via Dwolla.  The user control returns the transaction id, which could then be used to get details about that transaction.
 
+```
 	private void SendMoneyComplete(object sender, string e)
 	{
 		//Here is the transactionId
 		string transactionId = e;
 		GetTransactionByID(transactionId);
 	}
+```
 
-b) CloseSendMoney:  The user cancels out of the user control.  Typically you will want to hide the user control.
+-CloseSendMoney:  The user cancels out of the user control.  Typically you will want to hide the user control.
 
+```
 	private void CloseSendMoney(object sender, string e)
 	{
 	}
-
+```
 
 Available Methods via SendMoneyHelper
 =====================================
