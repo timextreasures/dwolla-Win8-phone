@@ -1,6 +1,6 @@
 Welcome to the Dwolla In-App WP8 SDK.  The purpose of this SDK is to make it easy for developers to use Dwolla within your Windows 8 Phone applications for in-app purchases.  The SDK works for Windows 8 phone apps.
 
-Adding the package from NuGet
+Getting Started / Overview
 =============================
 1. Create a new Windows 8 Phone application or open an existing application.
 2. Open the NuGet Package Manager (right-click on the Windows Phone project and select "Manage NuGet Packages".
@@ -18,8 +18,8 @@ The NuGet Package will be installed and you will notice a couple of items in the
 - A new folder "DwollaSDK" has been added to your project.  This folder contains a user control that you can use in your project that performs the in-app purchase functionality.  It can be customized by the developer.
 
 
-Getting Started - Create a Dwolla application
-=============================================
+Create a Dwolla application
+===========================
 To use the SDK you will need to register a free Dwolla application.  To do this go here: www.dwolla.com/applications
 
 Be sure to request the following "scopes" when registering your application.
@@ -163,9 +163,10 @@ When creating the instance of the SendMoneyHelper class you have the option to a
 
 ```
 
-###Events associated with UcSendMoney.  There are two event associated with UcSendMoney:
+###Events associated with UcSendMoney.  
+There are two event associated with UcSendMoney:
 
--SendMoneyComplete: The user successfully sent money to the merchant via Dwolla.  The user control returns the transaction id, which could then be used to get details about that transaction.
+- SendMoneyComplete: The user successfully sent money to the merchant via Dwolla.  The user control returns the transaction id, which could then be used to get details about that transaction.
 
 ```
 	private void SendMoneyComplete(object sender, string e)
@@ -176,7 +177,7 @@ When creating the instance of the SendMoneyHelper class you have the option to a
 	}
 ```
 
--CloseSendMoney:  The user cancels out of the user control.  Typically you will want to hide the user control.
+- CloseSendMoney:  The user cancels out of the user control.  Typically you will want to hide the user control.
 
 ```
 	private void CloseSendMoney(object sender, string e)
