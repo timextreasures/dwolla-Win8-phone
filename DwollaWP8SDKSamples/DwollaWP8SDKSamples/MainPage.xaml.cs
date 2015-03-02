@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Windows;
 using System.Windows.Navigation;
 using Dwolla.InAppSDK;
@@ -45,8 +46,13 @@ namespace DwollaWP8SDKSamples
             // "Approve"
             if (uriParams.ContainsKey(OAuthParameters.Code) && e.NavigationMode != NavigationMode.Back)
             {
+                //This method was decoding a '+' (%2B) to a space (%20), which caused an issue
+                //var accessCode = uriParams[OAuthParameters.Code];
+                string url = HttpUtility.UrlDecode(e.Uri.ToString());
+                int startPos = url.IndexOf("code=", StringComparison.Ordinal) + 5;
+                var accessCode = url.Substring(startPos);
+
                 //Now have the temp access code. Call to get the auth token
-                var accessCode = uriParams[OAuthParameters.Code];
                 AuthenticateWithCode(accessCode);
             }
             // "Deny"
@@ -114,6 +120,7 @@ namespace DwollaWP8SDKSamples
             {
                 //TxtLoginStatus.Text = _sendMoneyHelper.IsLoggedIn() ? "Logged In" : "Not Logged In";
                 BtnLogout.Visibility = _sendMoneyHelper.IsLoggedIn() ? Visibility.Visible : Visibility.Collapsed;
+                BtnClearRefreshToken.Visibility = _sendMoneyHelper.IsLoggedIn() ? Visibility.Visible : Visibility.Collapsed;
             }
         }
 
@@ -200,6 +207,14 @@ namespace DwollaWP8SDKSamples
             {
                 _sendMoneyHelper.Logout();
                 SetLoginStatus();
+            }
+        }
+
+        private void ClearRefreshToken_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (_sendMoneyHelper != null)
+            {
+                _sendMoneyHelper.ClearRefreshToken();
             }
         }
 

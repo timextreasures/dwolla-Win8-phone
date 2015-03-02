@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Deployment xmlns="http://schemas.microsoft.com/windowsphone/2012/deployment" AppPlatformVersion="8.0">
+<Deployment xmlns="http://schemas.microsoft.com/windowsphone/2014/deployment" AppPlatformVersion="8.1">
   <DefaultLanguage xmlns="" code="en-US" />
   <App xmlns="" ProductID="{d2273f65-c5ce-46b6-ada3-448a181e19a9}" Title="DwollaWP8SDKSamples" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="DwollaWP8SDKSamples author" Description="Sample description" Publisher="DwollaWP8SDKSamples" PublisherID="{c8bb3de6-cb37-493a-bcf1-faea67aa5b2f}">
     <IconPath IsRelative="true" IsResource="false">Assets\ApplicationIcon.png</IconPath>
@@ -38,4 +38,4 @@
     </ScreenResolutions>
   </App>
 </Deployment>
-<!-- WPSDK Version 8.0.9900 -->
+<!-- WPSDK Version 8.1.14194 -->
